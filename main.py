@@ -7,7 +7,8 @@ from aiogram.filters import CommandStart
 from aiogram.filters import Command
 from aiogram.utils import markdown
 from aiogram.enums import ParseMode
-import config
+from config import API_KEY
+from config import BOT_TOKEN
 
 dp = Dispatcher()
 
@@ -57,7 +58,7 @@ async def echo_message(message: types.Message):
 
 async def main():
     logging.basicConfig(level=logging.INFO)
-    bot = Bot(token=config.BOT_TOKEN)
+    bot = Bot(token=BOT_TOKEN)
     await dp.start_polling(bot)
 
 
