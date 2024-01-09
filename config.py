@@ -1,4 +1,4 @@
 import os
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-API_KEY = "dict.1.1.20231230T200744Z.b030af38c0e635b0.9a79ef0d37478db3195d688406b7fdb0b3328180"
+API_KEY = "c7ca9cdd48msh13b9bab2e4955ffp1b87f9jsncf0790864cbc"
