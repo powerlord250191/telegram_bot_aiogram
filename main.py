@@ -15,7 +15,8 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def handle_start(message: types.Message):
-    await message.answer(text=f'Привет {message.from_user.full_name}! Что я могу для тебя сделать?')
+    await message.answer(text=f'Привет {markdown.hbold(message.from_user.full_name)}! Что я могу для тебя сделать?',
+                         parse_mode=ParseMode.HTML)
 
 
 @dp.message(Command('help'))
@@ -26,17 +27,24 @@ async def handle_help(message: types.Message):
     #     offset=len('Я простой эхо бот!\nОтправь мне '),
     #     length=5)
     # entities = [entity_bold]
-    text = markdown.text(
-        'Я простой эхо бот\\.',
+    text = markdown.text(markdown.markdown_decoration.quote(
+        'Я простой эхо бот.'),
         markdown.text(
             'Отправь мне',
-            markdown.bold('любое'),
-            'сообщение\\!'),
+            markdown.markdown_decoration.bold(
+                markdown.text(
+                    markdown.underline('буквально'),
+                    'любое',
+                ),
+            ),
+            markdown.markdown_decoration.quote('сообщение!'),
+        ),
         sep='\n'
     )
     await message.answer(
         text=text,
-        parse_mode=ParseMode.MARKDOWN_V2
+        parse_mode=None
+        # parse_mode=ParseMode.MARKDOWN_V2
     )
 
 
@@ -58,7 +66,8 @@ async def echo_message(message: types.Message):
 
 async def main():
     logging.basicConfig(level=logging.INFO)
-    bot = Bot(token=BOT_TOKEN)
+    bot = Bot(token=BOT_TOKEN,
+              parse_mode=ParseMode.MARKDOWN_V2)
     await dp.start_polling(bot)
 
 
