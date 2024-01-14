@@ -15,7 +15,8 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def handle_start(message: types.Message):
-    await message.answer(text=f'Привет {markdown.hbold(message.from_user.full_name)}! Что я могу для тебя сделать?',
+    url = "https://telegrambot.biz/images/avatars/2457.png"
+    await message.answer(text=f'{markdown.hide_link(url)}Привет {markdown.hbold(message.from_user.full_name)}! Что я могу для тебя сделать?',
                          parse_mode=ParseMode.HTML)
 
 
@@ -46,12 +47,39 @@ async def handle_help(message: types.Message):
         parse_mode=None
         # parse_mode=ParseMode.MARKDOWN_V2
     )
-
+@dp.message(Command("code"))
+async def handle_comand_code(message: types.Message):
+    text = markdown.text("Это язык программирования Python:",
+                         "",
+                         markdown.markdown_decoration.pre_language(
+                             markdown.text(
+                                 "print('Hello World!')",
+                                 "\n",
+                                 "def foo():\n    return 'bar'",
+                                 sep="\n",
+                             ),
+                             language="python",
+                         ),
+                         "А это JS:",
+                         "",
+                         markdown.markdown_decoration.pre_language(
+                             markdown.text(
+                                 "console.log('Hello World!)",
+                                 "\n",
+                                 "function foo() {\n  return 'bar'\n}",
+                                 sep="\n"
+                             ),
+                             language="javascript",
+                         ),
+                         sep="\n"
+                         )
+    await message.answer(text=text)
 
 @dp.message()
 async def echo_message(message: types.Message):
     await message.answer(
-        text='Подождите секунду пожалуйста'
+        text='Подождите секунду пожалуйста',
+        parse_mode=None
     )
     # if message.text:
     #     await message.answer(
