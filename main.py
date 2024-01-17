@@ -78,7 +78,7 @@ async def handle_comand_code(message: types.Message):
 @dp.message()
 async def echo_message(message: types.Message):
     await message.answer(
-        text='Подождите секунду пожалуйста',
+        text='Подождите секунду, пожалуйста',
         parse_mode=None
     )
     # if message.text:
@@ -87,7 +87,8 @@ async def echo_message(message: types.Message):
     #         entities=message.entities,
     #     )
     try:
-        await message.send_copy(chat_id=message.chat.id)
+        await message.copy_to(chat_id=message.chat.id)
+        # await message.send_copy(chat_id=message.chat.id)
     except TypeError:
         await message.reply(text="Я не знаю что вам ответить, извините:(")
 
