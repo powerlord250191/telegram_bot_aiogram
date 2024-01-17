@@ -28,24 +28,24 @@ async def handle_help(message: types.Message):
     #     offset=len('Я простой эхо бот!\nОтправь мне '),
     #     length=5)
     # entities = [entity_bold]
-    text = markdown.text(markdown.markdown_decoration.quote(
-        'Я простой эхо бот.'),
+    text = markdown.text(
+        markdown.markdown_decoration.quote("Я простой эхо бот."),
         markdown.text(
-            'Отправь мне',
+            "Отправь мне",
             markdown.markdown_decoration.bold(
                 markdown.text(
-                    markdown.underline('буквально'),
-                    'любое',
+                    markdown.underline("буквально"),
+                    "любое",
                 ),
             ),
-            markdown.markdown_decoration.quote('сообщение!'),
+            markdown.markdown_decoration.quote("сообщение!"),
         ),
-        sep='\n'
+        sep="\n",
     )
     await message.answer(
         text=text,
-        parse_mode=None
-        # parse_mode=ParseMode.MARKDOWN_V2
+        # parse_mode=None,
+        # parse_mode=ParseMode.MARKDOWN_V2,
     )
 @dp.message(Command("code"))
 async def handle_comand_code(message: types.Message):
