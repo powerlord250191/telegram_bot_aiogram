@@ -20,7 +20,7 @@ async def handle_start(message: types.Message):
                          parse_mode=ParseMode.HTML)
 
 
-@dp.message(Command('help'))
+@dp.message(Command('help', prefix="/!"))
 async def handle_help(message: types.Message):
     # text = 'Я простой эхо бот!\nОтправь мне любое сообщение!'
     # entity_bold = types.MessageEntity(
@@ -47,7 +47,7 @@ async def handle_help(message: types.Message):
         # parse_mode=None,
         # parse_mode=ParseMode.MARKDOWN_V2,
     )
-@dp.message(Command("code"))
+@dp.message(Command("code", prefix="/!%"))
 async def handle_comand_code(message: types.Message):
     text = markdown.text("Это язык программирования Python:",
                          "",
@@ -88,6 +88,7 @@ async def echo_message(message: types.Message):
     #     )
     try:
         await message.copy_to(chat_id=message.chat.id)
+        # await message.forward(chat_id=message.chat.id)
         # await message.send_copy(chat_id=message.chat.id)
     except TypeError:
         await message.reply(text="Я не знаю что вам ответить, извините:(")
