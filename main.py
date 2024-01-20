@@ -33,7 +33,6 @@ async def handle_help(message: types.Message):
     #     offset=len('Я простой эхо бот!\nОтправь мне '),
     #     length=5)
     # entities = [entity_bold]
-    # await message.answer(text=text, entities=entities)
     text = markdown.text(
         markdown.markdown_decoration.quote("Я простой эхо бот."),
         markdown.text(
