@@ -24,7 +24,11 @@ async def handle_help(message: types.Message):
             markdown.markdown_decoration.bold(
                 markdown.text(
                     markdown.underline("буквально"),
-                    "любое",
+                    markdown.markdown_decoration.italic(
+                        markdown.text(
+                            "любое"
+                        ),
+                    ),
                 ),
             ),
             markdown.markdown_decoration.quote("сообщение!"),
@@ -32,5 +36,5 @@ async def handle_help(message: types.Message):
         sep="\n",
     )
     await message.answer(
-        text=text,
+        text=text, parse_mode=ParseMode.MARKDOWN_V2
     )
