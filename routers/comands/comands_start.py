@@ -1,7 +1,9 @@
-from aiogram import Router, types
+from aiogram import F, Router, types
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart, Command
 from aiogram.utils import markdown
+
+from keyboards.bot_keyboards import ButtonText, get_on_start_keyboard
 
 router = Router(name=__name__)
 
@@ -12,9 +14,10 @@ async def handle_start(message: types.Message):
     await message.answer(
         text=f'{markdown.hide_link(url)}Привет {markdown.hbold(message.from_user.full_name)}! Что я могу для тебя сделать?',
         parse_mode=ParseMode.HTML,
+        reply_markup=get_on_start_keyboard(),
     )
 
-
+@router.message(F.text == ButtonText.WHATS_NEXT)
 @router.message(Command("help", prefix="!/"))
 async def handle_help(message: types.Message):
     text = markdown.text(

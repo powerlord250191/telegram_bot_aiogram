@@ -1,8 +1,16 @@
-from aiogram import Router, types
+from aiogram import F, Router, types
 from aiogram.enums import ChatAction
+from aiogram.types import ReplyKeyboardRemove
+
+from keyboards.bot_keyboards import ButtonText
 
 router = Router(name=__name__)
-
+@router.message(F.text == ButtonText.BYE)
+async def handle_bye_message(message: types.Message):
+    await message.answer(
+        text="Увидимся позже! Нажмите /start в любое время!",
+        reply_markup=ReplyKeyboardRemove(),
+    )
 
 @router.message()
 async def echo_message(message: types.Message):
