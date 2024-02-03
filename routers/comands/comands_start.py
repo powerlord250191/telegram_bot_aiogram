@@ -3,8 +3,8 @@ from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart, Command
 from aiogram.utils import markdown
 
-from keyboards.bot_keyboards import ButtonText, get_on_start_keyboard
-
+from keyboards.bot_keyboards import ButtonText, get_on_start_keyboard, get_actions_kb
+from keyboards.bot_keyboards import get_on_help_keyboard
 router = Router(name=__name__)
 
 
@@ -39,5 +39,15 @@ async def handle_help(message: types.Message):
         sep="\n",
     )
     await message.answer(
-        text=text, parse_mode=ParseMode.MARKDOWN_V2
+        text=text,
+        parse_mode=ParseMode.MARKDOWN_V2,
+        reply_markup=get_on_help_keyboard(),
+    )
+
+@router.message(Command("more", prefix="!/more"))
+async def handle_more(message: types.Message):
+    markup = get_actions_kb()
+    await message.answer(
+        text="Выберите действие",
+        reply_markup=markup
     )

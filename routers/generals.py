@@ -14,6 +14,9 @@ async def handle_bye_message(message: types.Message):
 
 @router.message()
 async def echo_message(message: types.Message):
+    if message.poll:
+        await message.forward(chat_id=message.chat.id,)
+        return
     await message.answer(
         text="Подождите секунду, пожалуйста",
         parse_mode=None,
