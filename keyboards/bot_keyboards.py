@@ -52,11 +52,11 @@ def get_actions_kb() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
     builder.button(
         text="🌎 Отправить локацию",
-        request_location=True
+        request_location=True,
     ),
     builder.button(
         text="☎️ Отправить телефон",
-        request_contact=True
+        request_contact=True,
     ),
     builder.button(
         text="📊 Отправить опрос",
