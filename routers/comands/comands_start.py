@@ -2,15 +2,15 @@ from aiogram import F, Router, types
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart, Command
 from aiogram.utils import markdown
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from keyboards.bot_keyboards import (
     ButtonText,
     get_on_start_keyboard,
     get_actions_kb,
-    get_on_help_keyboard,
 )
 from keyboards.bot_keyboards import get_on_help_keyboard
+from keyboards.inline_keyboards.info_kb import build_info_keyboard
+
 router = Router(name=__name__)
 
 
@@ -58,32 +58,11 @@ async def handle_more(message: types.Message):
         reply_markup=markup
     )
 
+
 @router.message(Command("info", prefix="!/"))
 async def handle_info_comand(message: types.Message):
-    tg_channel_btn = InlineKeyboardButton(
-        text="📢 Канал",
-        url="https://t.me/deni_mani"
-    )
-    tg_chat_btn = InlineKeyboardButton(
-        text="💬 Чат",
-        url="https://t.me/SurenTalk",
-    )
-    bot_source_code_btn = InlineKeyboardButton(
-        text="🤖 исходный код этого бота",
-        url="https://gitlab.skillbox.ru/timur_bolgov/python_basic_diploma/-/tree/step_1"
-    )
-    row_tg = [tg_channel_btn, tg_chat_btn]
-    # row_first = [tg_channel_btn]
-    # row_second = [tg_chat_btn]
-    rows = [
-        # row_first,
-        # row_second,
-        row_tg,
-        [bot_source_code_btn],
-
-    ]
-    murkup = InlineKeyboardMarkup(inline_keyboard=rows)
+    markup = build_info_keyboard()
     await message.answer(
         text="Ссылки и прочие ресурсы:",
-        reply_markup=murkup,
+        reply_markup=markup,
     )
