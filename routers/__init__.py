@@ -5,9 +5,11 @@ from .comands import router as commands_router
 from .generals import router as generals_router
 from .media_handlers import router as media_router
 from .admin_handler import router as admin_router
+from .callback_handlers import router as callback_router
 
 router = Router(name=__name__)
 router.include_routers(
+    callback_router,
     commands_router,
     media_router,
     admin_router,

@@ -9,7 +9,7 @@ from keyboards.bot_keyboards import (
     get_actions_kb,
 )
 from keyboards.bot_keyboards import get_on_help_keyboard
-from keyboards.inline_keyboards.info_kb import build_info_keyboard
+from keyboards.inline_keyboards.info_kb import build_info_keyboard, InlineKeyboardMarkup
 
 router = Router(name=__name__)
 
@@ -17,6 +17,8 @@ router = Router(name=__name__)
 @router.message(CommandStart())
 async def handle_start(message: types.Message):
     url = "https://telegrambot.biz/images/avatars/2457.png"
+
+    print("Command text:", repr(message.text))      # 25-я минута
     await message.answer(
         text=f'{markdown.hide_link(url)}Привет {markdown.hbold(message.from_user.full_name)}! Что я могу для тебя сделать?',
         parse_mode=ParseMode.HTML,
