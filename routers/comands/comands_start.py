@@ -18,12 +18,12 @@ router = Router(name=__name__)
 async def handle_start(message: types.Message):
     url = "https://telegrambot.biz/images/avatars/2457.png"
 
-    print("Command text:", repr(message.text))      # 25-я минута
     await message.answer(
         text=f'{markdown.hide_link(url)}Привет {markdown.hbold(message.from_user.full_name)}! Что я могу для тебя сделать?',
         parse_mode=ParseMode.HTML,
         reply_markup=get_on_start_keyboard(),
     )
+
 
 @router.message(F.text == ButtonText.WHATS_NEXT)
 @router.message(Command("help", prefix="!/"))
@@ -51,6 +51,7 @@ async def handle_help(message: types.Message):
         parse_mode=ParseMode.MARKDOWN_V2,
         reply_markup=get_on_help_keyboard(),
     )
+
 
 @router.message(Command("more", prefix="!/more"))
 async def handle_more(message: types.Message):

@@ -46,6 +46,7 @@ def get_on_help_keyboard() -> ReplyKeyboardMarkup:
     builder.adjust(3)
     return builder.as_markup(resize_keyboard=False)
 
+
 def get_actions_kb() -> ReplyKeyboardMarkup:
     #     markup = ReplyKeyboardMarkup()
     #     return markup

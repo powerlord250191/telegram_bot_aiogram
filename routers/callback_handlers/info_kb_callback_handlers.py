@@ -1,13 +1,26 @@
 from random import randint
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
-from keyboards.inline_keyboards.info_kb import random_site_cb_data
+from keyboards.inline_keyboards.info_kb import (
+    random_num_dice_cd_data,
+    random_num_modal_cd_data,
+)
 
 router = Router(name=__name__)
 
-@router.callback_query(F.data == random_site_cb_data)
-async def handle_random_site_cb(callback_query: CallbackQuery):
-    bot_me = await callback_query.bot.me()
+
+@router.callback_query(F.data == random_num_dice_cd_data)
+async def random_num_dice_cd(callback_query: CallbackQuery):
     await callback_query.answer(
-        url=f"t.me/{bot_me.username}?start={randint(1, 100)}",
+        text=f"Твоё случайное число: {randint(1, 21)}",
+        cache_time=5,
+    )
+
+
+@router.callback_query(F.data == random_num_modal_cd_data)
+async def random_num_modal_cd(callback_query: CallbackQuery):
+    await callback_query.answer(
+        text=f"Cлучайное число: {randint(1, 100)}",
+        cache_time=5,
+        show_alert=True,
     )
