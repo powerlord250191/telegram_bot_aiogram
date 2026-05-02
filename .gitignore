@@ -1,6 +1,7 @@
 # Secrets & Environment Variables
 .env
 local.env
+/config_data/config.txt
 
 # Virtual Environment
 venv/

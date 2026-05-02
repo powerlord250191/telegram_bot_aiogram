@@ -12,7 +12,15 @@ class Settings(BaseSettings):
     admin_id: frozenset[int] = frozenset({42, 287612289})
 
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+config_path = os.path.join(current_dir, "config_data", "config.txt")
+
+with open(config_path, encoding="utf-8") as file:
+    api_key = file.read()
+
+
 settings = Settings()
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-API_KEY = "c7ca9cdd48msh13b9bab2e4955ffp1b87f9jsncf0790864cbc"
+API_KEY = api_key
