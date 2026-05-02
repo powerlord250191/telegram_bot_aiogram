@@ -1,2 +1,35 @@
-.idea
+# Secrets & Environment Variables
+.env
+local.env
+
+# Virtual Environment
+venv/
+.venv/
+ENV/
+env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE settings (PyCharm, VS Code, etc.)
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.sqlite
+*.sqlite3
+db.sqlite3
+
+# Files from packaging and distribution
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
 
