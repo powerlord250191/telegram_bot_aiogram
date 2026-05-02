@@ -23,4 +23,3 @@ with open(config_path, encoding="utf-8") as file:
 settings = Settings()
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-API_KEY = api_key
