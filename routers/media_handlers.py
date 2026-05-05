@@ -1,12 +1,12 @@
 from aiogram import Router, F, types
 
-router = Router(name=__name__)
-any_media_filter = F.photo | F.video | F.document
+router: Router = Router(name=__name__)
+any_media_filter: F = F.photo | F.video | F.document
 
 
 @router.message(F.photo, ~F.caption)
 async def handle_photo_wo_caption(message: types.Message):
-    caption = "Я не вижу, извини. Можешь подписать эту картинку?"
+    caption: str = "Я не вижу, извини. Можешь подписать эту картинку?"
     await message.reply_photo(
         photo=message.photo[-1].file_id,
         caption=caption,

@@ -14,7 +14,7 @@ router = Router(name=__name__)
 
 @router.message(Command("code", prefix="/!%"))
 async def handle_command_code(message: types.Message):
-    text = markdown.text(
+    text: markdown.text = markdown.text(
         "Это язык программирования Python:",
         "",
         markdown.markdown_decoration.pre_language(
@@ -44,7 +44,7 @@ async def handle_command_code(message: types.Message):
 
 @router.message(Command('pic'))
 async def handle_command_pic_url(message: types.Message):
-    url = 'https://stihi.ru/pics/2023/03/01/2507.jpg'
+    url: str = 'https://stihi.ru/pics/2023/03/01/2507.jpg'
     await message.bot.send_chat_action(
         chat_id=message.chat.id,
         action=ChatAction.UPLOAD_PHOTO,
@@ -57,7 +57,7 @@ async def handle_command_pic_url(message: types.Message):
 
 @router.message(Command('file'))
 async def handle_command_pic_path(message: types.Message):
-    file_path = r"C:\Users\Тимур\Downloads\sphynx.jpeg"
+    file_path: str = r"C:\Users\Тимур\Downloads\sphynx.jpeg"
     await message.bot.send_chat_action(
         chat_id=message.chat.id,
         action=ChatAction.UPLOAD_DOCUMENT,
@@ -88,7 +88,7 @@ async def send_txt_file(message: types.Message):
 
 async def sent_big_file(message: types.Message):
     file = io.BytesIO()
-    url = "https://kotey-ka.ru/wp-content/uploads/2017/05/11111.jpg"
+    url: str = "https://kotey-ka.ru/wp-content/uploads/2017/05/11111.jpg"
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             result_bytes = await response.read()

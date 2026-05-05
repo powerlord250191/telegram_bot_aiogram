@@ -16,7 +16,7 @@ router = Router(name=__name__)
 
 @router.message(CommandStart())
 async def handle_start(message: types.Message):
-    url = "https://telegrambot.biz/images/avatars/2457.png"
+    url: str = "https://telegrambot.biz/images/avatars/2457.png"
 
     await message.answer(
         text=f'{markdown.hide_link(url)}Привет {markdown.hbold(message.from_user.full_name)}! Что я могу для тебя сделать?',
@@ -28,7 +28,7 @@ async def handle_start(message: types.Message):
 @router.message(F.text == ButtonText.WHATS_NEXT)
 @router.message(Command("help", prefix="!/"))
 async def handle_help(message: types.Message):
-    text = markdown.text(
+    text: markdown.text = markdown.text(
         markdown.markdown_decoration.quote("Я простой эхо бот."),
         markdown.text(
             "Отправь мне",

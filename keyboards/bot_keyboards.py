@@ -7,17 +7,17 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 
 class ButtonText:
-    HELLO = "Привет!"
-    WHATS_NEXT = "Что дальше?"
-    BYE = "До свидания"
+    HELLO: str = "Привет!"
+    WHATS_NEXT: str = "Что дальше?"
+    BYE: str = "До свидания"
 
 
 def get_on_start_keyboard() -> ReplyKeyboardMarkup:
-    button_hello = KeyboardButton(text=ButtonText.HELLO)
-    button_help = KeyboardButton(text=ButtonText.WHATS_NEXT)
-    button_bye = KeyboardButton(text=ButtonText.BYE)
-    button_first_row = [button_hello, button_help]
-    button_second_row = [button_bye]
+    button_help: KeyboardButton = KeyboardButton(text=ButtonText.HELLO)
+    button_hello: KeyboardButton = KeyboardButton(text=ButtonText.WHATS_NEXT)
+    button_bye: KeyboardButton = KeyboardButton(text=ButtonText.BYE)
+    button_first_row: list[KeyboardButton] = [button_hello, button_help]
+    button_second_row: list[KeyboardButton] = [button_bye]
     markup = ReplyKeyboardMarkup(
         keyboard=[button_first_row, button_second_row],
         resize_keyboard=True,
@@ -27,7 +27,7 @@ def get_on_start_keyboard() -> ReplyKeyboardMarkup:
 
 
 def get_on_help_keyboard() -> ReplyKeyboardMarkup:
-    numbers = [
+    numbers: list[str] = [
         "1️⃣",
         "2️⃣",
         "3️⃣",
@@ -39,7 +39,7 @@ def get_on_help_keyboard() -> ReplyKeyboardMarkup:
         "9️⃣",
         "0️⃣"
     ]
-    builder = ReplyKeyboardBuilder()
+    builder: ReplyKeyboardBuilder = ReplyKeyboardBuilder()
     for num in numbers:
         # builder.button(text=num)
         builder.add(KeyboardButton(text=num))
@@ -50,7 +50,7 @@ def get_on_help_keyboard() -> ReplyKeyboardMarkup:
 def get_actions_kb() -> ReplyKeyboardMarkup:
     #     markup = ReplyKeyboardMarkup()
     #     return markup
-    builder = ReplyKeyboardBuilder()
+    builder: ReplyKeyboardBuilder = ReplyKeyboardBuilder()
     builder.button(
         text="🌎 Отправить локацию",
         request_location=True,
